@@ -10,39 +10,22 @@ function readFile() {
     return content.split(' ');
 }
 
-function preparePolaSukukata(input) {
-    let constructType = '';
-    for (let chr of input) {
-        (hurufVokal.indexOf(chr) >= 0) ? constructType += 'V' : constructType += 'K';
-    }
-    return `{ type: '${constructType}', disassemble: '${constructType}', }, // ${input}`;
-}
-
 function prepareUnitTest(input) {
     return `expect(sukukata.toArray('${input}')).toEqual(['${input}']);`;
 }
 
 function runTrainer() {
     let trainingResult = [];
-    let polaSukukata = [];
     let unitTest = [];
     const textArray = readFile();
     for(let text of textArray) {
         if (text !== '') {
             if(sukukata.toArray(text).length === 0) {
-                polaSukukata.push(preparePolaSukukata(text));
                 unitTest.push(prepareUnitTest(text));
             }
             trainingResult.push(`${text}: ${sukukata.toArray(text)}`);
         }
     }
-    
-    polaSukukata.sort(function(a, b){
-        return a.length - b.length;
-    });
-    polaSukukata = polaSukukata.filter(function(item, pos) {
-        return polaSukukata.indexOf(item) == pos;
-    })
 
     unitTest.sort(function(a, b){
         return a.length - b.length;
@@ -56,13 +39,6 @@ function runTrainer() {
         stream.write("Result\n");
         stream.write("========================================\n");
         for(let item of trainingResult) {
-            stream.write(`${item}\n`);
-        }
-        stream.write("\n");
-        stream.write("\n");
-        stream.write("polaSukukata\n");
-        stream.write("========================================\n");
-        for(let item of polaSukukata) {
             stream.write(`${item}\n`);
         }
         stream.write("\n");

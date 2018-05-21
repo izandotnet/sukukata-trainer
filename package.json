@@ -1,16 +1,15 @@
 {
   "name": "sukukata-trainer",
-  "version": "0.0.1",
+  "version": "0.0.2-beta",
   "description": "Aplikasi untuk menyediakan entri polaSukukata dan Unit Test untuk library sukukata",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "sort": "node sortPola.js"
+    "start": "node index.js"
   },
   "author": "izandotnet",
   "license": "MIT",
   "dependencies": {
     "fs": "0.0.1-security",
-    "sukukata": "0.0.7-beta"
+    "sukukata": "0.0.2-alpha"
   }
 }
