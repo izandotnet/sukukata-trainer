@@ -10,29 +10,24 @@ function readFile() {
     return content.split(' ');
 }
 
-function prepareUnitTest(input) {
-    return `expect(sukukata.toArray('${input}')).toEqual(['${input}']);`;
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.split(search).join(replacement);
+};
+
+function prepareUnitTest(input, arrayText) {
+    const result = `expect(sukukata.toArray('${input}')).toEqual(['${arrayText}']);`;
+    return result.replaceAll(',','\',\'');
 }
 
 function runTrainer() {
     let trainingResult = [];
-    let unitTest = [];
     const textArray = readFile();
     for(let text of textArray) {
         if (text !== '') {
-            if(sukukata.toArray(text).length === 0) {
-                unitTest.push(prepareUnitTest(text));
-            }
             trainingResult.push(`${text}: ${sukukata.toArray(text)}`);
         }
     }
-
-    unitTest.sort(function(a, b){
-        return a.length - b.length;
-    });
-    unitTest = unitTest.filter(function(item, pos) {
-        return unitTest.indexOf(item) == pos;
-    })
 
     const stream = fs.createWriteStream("result.txt");
     stream.once('open', function(fd) {
@@ -48,8 +43,8 @@ function runTrainer() {
         stream.write("========================================\n");
         stream.write(`test('Test by: contributor ${new Date()}', () => {\n`);
 
-        for(let item of unitTest) {
-            stream.write(`${item}\n`);
+        for(let item of textArray) {
+            if (item !== '') stream.write(`${prepareUnitTest(item, sukukata.toArray(item))}\n`);
         }
         
         stream.write("});\n");

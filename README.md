@@ -1,5 +1,5 @@
 # sukukata-trainer
-Sebuah aplikasi untuk menyediakan entri polaSukukata dan Unit Test untuk library [sukukata](https://github.com/izandotnet/sukukata/)
+Sebuah aplikasi untuk pandu uji dan menyediakan entri Unit Test untuk library [sukukata](https://github.com/izandotnet/sukukata/)
 
 ## Cara guna
 ```
@@ -23,7 +23,7 @@ npm start
 ### Result
 Semak bahagian <b>Result</b> untuk setiap ayat yang telah diproses. Sila laporkan ketidaktepatan yang dijumpai [di sini](https://github.com/izandotnet/sukukata/issues/new)
 ### Unit test
-Bahagian <b>Unit Test</b> boleh digunakan untuk menambahkan aturan di [index.test.js](https://github.com/izandotnet/sukukata/blob/master/__tests__/index.test.js)
+Bahagian <b>Unit Test</b> boleh digunakan untuk menambahkan aturan di [index.test.js](https://github.com/izandotnet/sukukata/blob/master/__tests__/index.test.js). Sila ubah sukukata yang dikehendaki jika perlu.
 
 ## Sumbangan
 Sila teliti aturan di [https://github.com/izandotnet/sukukata](https://github.com/izandotnet/sukukata) untuk membuat sebarang sumbangan.
